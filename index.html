@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SEATown SEAMonsters</title>
+    <meta name="description" content="">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Fredericka+the+Great">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>SEA Monster Match</h1>
+        </header>
+
+        <section class="score-panel">
+          <div id="ratingBlock">
+          <ul id="starRating" class="stars"></ul>
+        	<span class="moves"></span> Moves
+          </div>
+
+          <div id="gameTimerBlock">
+            Time: <span id="gameTimer">00:00:00</span>
+          </div>
+
+          <div class="restart">
+            <span>Restart Game</span>
+            <i class="fa fa-repeat"></i>
+        	</div>
+
+        </section>
+
+        <ul class="deck"></ul>
+
+    </div>
+
+    <div id="my-modal" class="modal-closed">
+      <h1>Yay, You've Won!</h1>
+      <h3>You Got <ul id="finalRating" class="stars"></ul> Stars</h3>
+      <h3>Your Time was: <span id="finalTime">00:00:00</span>
+      </h3>
+      <button id="play-again">Play Again?</button>
+      <button id="close-modal">Close</button>
+    </div>
+
+    <script src="js/action.js"></script>
+</body>
+</html>
