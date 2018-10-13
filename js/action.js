@@ -18,12 +18,13 @@
   let showButton = document.querySelector("#show-modal");
   let flippedCards = [];
   let matchedCards = [];
+  let unmatchedCards = [];
   let moves = 0;
   let seconds = 0;
   let minutes = 0;
   let hours = 0;
   let interval = null;
-  let status = "stopped";
+  let hasUnmatchedCards = false;
 
   // Start game, shuffle cards
   function init() {
@@ -45,20 +46,45 @@
     myModal.classList.add("modal-closed");
 
     shuffle(icons);
-    for (let i = 0; i < icons.length; i++) {
-      const card = document.createElement("li");
+
+    for (let i = 0; i < icons.length; i = i + 4) {
+      // Make a card row
+      let cardRow = document.createElement("div");
+      cardRow.classList.add("card-row");
+
+      // Make cards and add to card row
+      cardRow.append(makeCard(icons[i]));
+      cardRow.append(makeCard(icons[i + 1]));
+      cardRow.append(makeCard(icons[i + 2]));
+      cardRow.append(makeCard(icons[i + 3]));
+
+      // Add card row to the deck container
+      cardsContainer.append(cardRow);
+    }
+
+    function makeCard(icon) {
+      // Create card element
+      const card = document.createElement("div");
+
+      // Add card CSS class and inner HTML markup with icon class
       card.classList.add("card");
-      card.innerHTML = `<i class="${icons[i]}"></i>`;
-      cardsContainer.appendChild(card);
+      card.innerHTML = `<i class="${icon}"></i>`;
 
       // Click event, each card
       click(card);
+
+      return card;
     }
 
     // Click event
     function click(card) {
       //Card click event
       card.addEventListener("click", function() {
+        // Don't do anything if the game has unmatched cards currently
+        if (hasUnmatchedCards) {
+          return;
+        }
+
         const currentCard = this;
         const previousCard = flippedCards[0];
 
@@ -92,13 +118,23 @@
 
       gameOver();
     } else {
+      // Tell game we have an "unmatch"
+      hasUnmatchedCards = true;
+
+      // Card don't match - add shake animation
+      setTimeout(function() {
+        currentCard.classList.add("unmatched");
+        previousCard.classList.add("unmatched");
+      }, 250);
 
       // Set wait time
       setTimeout(function() {
-        currentCard.classList.remove("open", "show", "disable");
-        previousCard.classList.remove("open", "show", "disable");
+        currentCard.classList.remove("open", "show", "disable", "unmatched");
+        previousCard.classList.remove("open", "show", "disable", "unmatched");
         flippedCards = [];
-      }, 300);
+        unmatchedCards = [];
+        hasUnmatchedCards = false;
+      }, 1250);
     }
 
     countMoves();
