@@ -13,9 +13,10 @@ To start, double click `index.html` or run `open index.html` from the command li
 
 ## Sources of information
 
+- StackOverflow ([https://stackoverflow.com](https://stackoverflow.com))
 - CSSTricks ([https://css-tricks.com/snippets/css/](https://css-tricks.com/snippets/css/))
 - MDN ([https://developer.mozilla.org/en-US/](https://developer.mozilla.org/en-US/))
-- Seatown Monster icon is Copyright (c) London Radabaugh ([https://london.walkingtoast.com](https://london.walkingtoast.com))
+- SEATown Monster icon is Copyright (c) London Radabaugh ([https://london.walkingtoast.com](https://london.walkingtoast.com))
 
 ## License
 
